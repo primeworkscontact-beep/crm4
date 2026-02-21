@@ -54,6 +54,19 @@ app = FastAPI(title="Dolgozó CRM API")
 api_router = APIRouter(prefix="/api")
 
 # ==================== MODELS ====================
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://dolgozocrm.optimalcrew.hu",
+        "http://dolgozocrm.optimalcrew.hu",
+        "https://dolgozocrmfinal.onrender.com",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class UserCreate(BaseModel):
     email: EmailStr
